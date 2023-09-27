@@ -1,6 +1,10 @@
 export interface Entry {}
 
-export type Gender = "male" | "female";
+export const Gender = {
+  Male: "male",
+  Female: "female",
+  Other: "other",
+};
 
 export interface PatientData {
   id: string;

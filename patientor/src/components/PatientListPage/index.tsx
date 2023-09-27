@@ -23,6 +23,7 @@ import IndividualPatientData from "./IndividualPatientData";
 
 import patientService from "../../services/patients";
 import patients from "../../services/patients";
+// import { fetchPatientDetails } from "../../App";
 
 interface Props {
   patients: Patient[];
@@ -69,57 +70,60 @@ const PatientListPage = ({ patients, setPatients }: Props) => {
     }
   };
 
-  const [patientId, setPatientId] = useState("");
-
-  useEffect(() => {
-    console.log("patientId");
-  }, [patientId]);
+  // useEffect(() => {
+  //   console.log("patientId");
+  // }, [patientId]);
   return (
     <div className="App">
-      <Box>
-        <Typography align="center" variant="h6">
-          Patient list
-        </Typography>
-      </Box>
-      <Table style={{ marginBottom: "1em" }}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Gender</TableCell>
-            <TableCell>Occupation</TableCell>
-            <TableCell>Health Rating</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {patients.map((patient: Patient) => (
-            <TableRow key={patient.id}>
-              <TableCell>
-                <Link
-                  to={`/patients/${patient.id}`}
-                  style={{ textDecoration: "none" }}
-                  onClick={() => {}}
-                >
-                  {patient.name}
-                </Link>
-              </TableCell>
-              <TableCell>{patient.gender}</TableCell>
-              <TableCell>{patient.occupation}</TableCell>
-              <TableCell>
-                <HealthRatingBar showText={false} rating={1} />
-              </TableCell>
+      <>
+        <Box>
+          <Typography align="center" variant="h6">
+            Patient list
+          </Typography>
+        </Box>
+        <Table style={{ marginBottom: "1em" }}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Gender</TableCell>
+              <TableCell>Occupation</TableCell>
+              <TableCell>Health Rating</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <AddPatientModal
-        modalOpen={modalOpen}
-        onSubmit={submitNewPatient}
-        error={error}
-        onClose={closeModal}
-      />
-      <Button variant="contained" onClick={() => openModal()}>
-        Add New Patient
-      </Button>
+          </TableHead>
+          <TableBody>
+            {patients.map((patient: Patient) => (
+              <TableRow key={patient.id}>
+                <TableCell>
+                  <Link
+                    to={`/patients/${patient.id}`}
+                    style={{ textDecoration: "none" }}
+                    onClick={() => {
+                      console.log("clicked");
+                      // need to pass patient.id to url /patients/${patient.id}
+                    }}
+                  >
+                    {patient.name}
+                  </Link>
+                </TableCell>
+                <TableCell>{patient.gender}</TableCell>
+                <TableCell>{patient.occupation}</TableCell>
+                <TableCell>
+                  <HealthRatingBar showText={false} rating={1} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <AddPatientModal
+          modalOpen={modalOpen}
+          onSubmit={submitNewPatient}
+          error={error}
+          onClose={closeModal}
+        />
+        <Button variant="contained" onClick={() => openModal()}>
+          Add New Patient
+        </Button>
+      </>
     </div>
   );
 };

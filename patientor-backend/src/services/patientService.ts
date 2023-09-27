@@ -16,6 +16,8 @@ const getNonSensitivePatientData = (): NonSensitivePatientData[] => {
   });
 };
 
+
+
 const findPatientById = (id: string): NonSensitivePatientData | undefined => {
   const patient = data.find((data) => data.id === id);
   return patient;
