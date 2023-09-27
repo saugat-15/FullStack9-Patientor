@@ -8,7 +8,7 @@ export interface PatientData {
   ssn: string;
   occupation: string;
   gender: string;
-  entries?: Entry[];
+  entries: Entry[];
   dateOfBirth: string;
 }
 
